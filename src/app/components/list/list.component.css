@@ -6,3 +6,15 @@
   padding: 20px;
   background: white;
 }
+.list input{
+  width: 80%;
+  height: 20px;
+  padding: 10px;
+  margin: auto;
+  display: block;
+  margin-bottom: 20px;
+  font-size: 20px;
+  border-radius: 5px;
+  border:none;
+  background: #eeeeee;
+}

@@ -7,13 +7,22 @@ import {DataService} from '../../service/data.service';
   templateUrl: './list.component.html',
   styleUrls: ['./list.component.css']
 })
-export class ListComponent implements OnInit
-{
-  items: Item[];
+export class ListComponent implements OnInit {
+  searchQuery: string;
+  items: any;
+  AllItems: Item[];
   constructor(private ds: DataService) {}
 
   ngOnInit() {
-    this.items = this.ds.getItems();
+    this.items = this.AllItems = this.ds.getItems();
   }
+  OnSearch(ev) {
+    // let query = ev.target.value;
+    // console.log(query);
 
-}
+    console.log(this.searchQuery);
+    this.items = this.AllItems.filter
+     (item => item.artist.toUpperCase().indexOf(this.searchQuery.toUpperCase()) > -1) ||
+     (item => item.name.toUpperCase().indexOf(this.searchQuery.toUpperCase()) > -1);
+}}
+
