@@ -1,5 +1,5 @@
 <div class="list">
-  <input placeholder="Search..." (keyup)="OnSearch($event)"  [(ngModel)]="searchQuery">
+  <input placeholder="Search..." dir="auto" (keyup)="OnSearch($event)"  [(ngModel)]="searchQuery">
   <div>
     <app-item *ngFor="let it of items" [item]="it"></app-item>
   </div>

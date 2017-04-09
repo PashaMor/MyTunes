@@ -13,16 +13,16 @@ export class ListComponent implements OnInit {
   AllItems: Item[];
   constructor(private ds: DataService) {}
 
-  ngOnInit() {
-    this.items = this.AllItems = this.ds.getItems();
-  }
-  OnSearch(ev) {
-    // let query = ev.target.value;
-    // console.log(query);
-
-    console.log(this.searchQuery);
-    this.items = this.AllItems.filter
-     (item => item.artist.toUpperCase().indexOf(this.searchQuery.toUpperCase()) > -1) ||
-     (item => item.name.toUpperCase().indexOf(this.searchQuery.toUpperCase()) > -1);
+  ngOnInit() {}
+  OnSearch() {
+    if (!this.searchQuery) {
+      this.AllItems = this.items = [];
+      return;
+    }
+    console.log('search>', this.searchQuery);
+    this.ds.getItems(this.searchQuery).then((data: any) => {
+      this.AllItems = this.items = data._body.results;
+      console.log(this.items[0]);
+    });
 }}
 

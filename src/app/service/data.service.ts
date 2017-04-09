@@ -1,24 +1,19 @@
 import { Injectable } from '@angular/core';
-import {Item} from '../module/item.model';
+import {Jsonp} from '@angular/http';
+import 'rxjs/add/operator/toPromise';
 
-const ITEMS: Item[] = [
-  {
-    name : 'Another Brick In The Wall',
-    artist : 'Pink Floyd'
-  },
-  {
-    name : 'People are Strange',
-    artist : 'The Doors'
-  }
 
-];
+
+
 @Injectable()
 
 export class DataService {
-  constructor() {
+  constructor(private jsonp: Jsonp) {
 
   }
-  getItems(): Item[] {
-    return ITEMS;
+  getItems(search: string) {
+    let url = `https://itunes.apple.com/search?term=${search}&callback=JSONP_CALLBACK`;
+   return this.jsonp.get(url)
+      .toPromise();
   }
 }
